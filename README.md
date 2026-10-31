@@ -22,13 +22,13 @@
 ### pi（推荐）
 
 ```bash
-pi install git:github.com/<owner>/pi-skills@v0.1.0
+pi install git:github.com/<owner>/pi-skills@v0.1.1
 ```
 
 也可以只用一次、不写配置：
 
 ```bash
-pi -e git:github.com/<owner>/pi-skills@v0.1.0
+pi -e git:github.com/<owner>/pi-skills@v0.1.1
 ```
 
 装完在会话里 `/skill:verification` 或 `/skill:godot` 可直接强制加载；
