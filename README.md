@@ -19,16 +19,30 @@
 
 ## 安装
 
-### pi（推荐）
+**只想要验证技能？** 用单技能包（不夹带 Godot 手册）：
 
 ```bash
-pi install git:github.com/<owner>/pi-skills@v0.1.1
+pi install git:github.com/CooCoode/pi-verification@v0.1.0
+```
+
+### pi（合集包：两个技能都要）
+
+```bash
+pi install git:github.com/CooCoode/pi-skills@v0.1.1
+```
+
+只装合集但只启用其中一个：在 `~/.pi/agent/settings.json` 里把包写成对象形式，
+用 `+路径` / `-路径` 过滤：
+
+```json
+{ "packages": [ { "source": "git:github.com/CooCoode/pi-skills@v0.1.1",
+                  "skills": ["+./skills/verification"] } ] }
 ```
 
 也可以只用一次、不写配置：
 
 ```bash
-pi -e git:github.com/<owner>/pi-skills@v0.1.1
+pi -e git:github.com/CooCoode/pi-skills@v0.1.1
 ```
 
 装完在会话里 `/skill:verification` 或 `/skill:godot` 可直接强制加载；
@@ -39,7 +53,7 @@ pi -e git:github.com/<owner>/pi-skills@v0.1.1
 本包遵循 [Agent Skills 规范](https://agentskills.io/specification)，`SKILL.md` 可直接复用：
 
 ```bash
-git clone https://github.com/<owner>/pi-skills
+git clone https://github.com/CooCoode/pi-skills
 cp -R pi-skills/skills/verification ~/.claude/skills/     # Claude Code
 cp -R pi-skills/skills/godot        ~/.claude/skills/
 # 或项目级：cp -R pi-skills/skills/* <repo>/.agents/skills/
@@ -48,7 +62,7 @@ cp -R pi-skills/skills/godot        ~/.claude/skills/
 ### 只想要执行器 / 模板（不用 agent）
 
 ```bash
-curl -O https://raw.githubusercontent.com/<owner>/pi-skills/v0.1.0/skills/verification/templates/test_runner.sh
+curl -O https://raw.githubusercontent.com/CooCoode/pi-skills/v0.1.0/skills/verification/templates/test_runner.sh
 chmod +x test_runner.sh
 
 # 用法：按 "名称|命令" 传入用例
