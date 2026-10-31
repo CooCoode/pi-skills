@@ -1,0 +1,26 @@
+name: self-test
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 校验 SKILL.md 结构
+        run: |
+          set -e
+          for f in skills/*/SKILL.md; do
+            head -1 "$f" | grep -qx -- '---' || { echo "$f 缺少 frontmatter"; exit 1; }
+            sed -n '2,3p' "$f" | grep -q '^name: ' || { echo "$f 缺少 name"; exit 1; }
+            sed -n '2,3p' "$f" | grep -q '^description: ' || { echo "$f 缺少 description"; exit 1; }
+            echo "OK $f"
+          done
+      - name: Shell 语法检查
+        run: bash -n scripts/self_test.sh skills/verification/templates/test_runner.sh
+      - name: 自测执行器（四种用例判定）
+        run: bash scripts/self_test.sh
