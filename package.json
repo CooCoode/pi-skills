@@ -1,0 +1,28 @@
+{
+  "name": "pi-skills",
+  "version": "0.1.0",
+  "description": "Verification-first agent skills: prove code works before claiming it does. Includes a language-agnostic test runner, a false-signal checklist, a playbook template, and a Godot 4.x field guide.",
+  "keywords": [
+    "pi-package",
+    "agent-skills",
+    "verification",
+    "testing",
+    "benchmark",
+    "godot"
+  ],
+  "license": "MIT",
+  "pi": {
+    "skills": [
+      "./skills/verification",
+      "./skills/godot"
+    ]
+  },
+  "files": [
+    "skills/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "bash scripts/self_test.sh"
+  }
+}
